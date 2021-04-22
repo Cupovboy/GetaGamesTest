@@ -45,3 +45,8 @@ Plano azul Salto
 Obstaculos 
 Plano negro derrape
 
+
+Font :https://www.dafont.com/es/mario-kart-ds.font
+
+
+Particulas: https://www.kenney.nl/assets/particle-pack
