@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class KartManager : MonoBehaviour
 {
@@ -12,16 +13,21 @@ public class KartManager : MonoBehaviour
     public GameObject Wheel3;
     public GameObject Wheel4;
     private Timer Timer;
+    private GameManager GM;
     public bool powerspeed;
     private int oSpeed;
     private float timerStart;
     public Text SpeedT;
-
+   public bool mitad;
+    public Text carrera;
+    public bool jumping;
+        
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         Timer = GameObject.FindObjectOfType<Timer>();
+        GM = GameObject.FindObjectOfType<GameManager>();
         oSpeed = speed;
     }
 
@@ -33,7 +39,8 @@ public class KartManager : MonoBehaviour
         if(powerspeed)
         speedRecover();
         SpeedDisplay();
-
+        textCarrera();
+      
     }
     /// <summary>
     /// Function in charge of the kart moverment using vertical input and movement speed ;
@@ -66,7 +73,7 @@ public class KartManager : MonoBehaviour
     {
 
         if (Input.GetAxis("Horizontal") != 0)
-            m_Rigidbody.AddTorque(Vector3.up * Input.GetAxis("Horizontal") * 2);
+            m_Rigidbody.AddTorque(Vector3.up * Input.GetAxis("Horizontal") * 1);
 
     }
     /// <summary>
@@ -107,7 +114,19 @@ public class KartManager : MonoBehaviour
         {
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
             m_Rigidbody.AddRelativeForce(new Vector3(0f, 30f, 0) * speed *  5);
+            jumping = true;
+
            
+        }
+        if (other.tag == "m1")
+        {
+            mitad = !mitad;
+
+        }
+        if (other.tag == "End" && mitad)
+        {
+            GM.aumentarCareras();
+            mitad = false;
         }
     }
 
@@ -142,8 +161,20 @@ public class KartManager : MonoBehaviour
         m_Rigidbody.AddTorque(new Vector3(360f, 360f, 360) );
 
     }
+    private void textCarrera()
+    {
+
+       carrera.text = "Carreras:  " + GM.getCarrera() ;
 
 
+    }
+    private void changeConstrain()
+    {
+
+      //  m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionY;
+    }
+
+   
 
 
 }

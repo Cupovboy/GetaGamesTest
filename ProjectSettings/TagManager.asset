@@ -8,6 +8,8 @@ TagManager:
   - Box
   - oil
   - jump
+  - m1
+  - End
   layers:
   - Default
   - TransparentFX
