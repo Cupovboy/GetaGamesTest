@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     public float TimerClock;
     public float startTime;
     public Text clockText;
-    
+    public bool EndGame;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,10 @@ public class Timer : MonoBehaviour
             TimerClock -= Time.deltaTime;
             clockText.text = Math.Ceiling(TimerClock).ToString();
         }
+        else
+        {
+            EndGame = true;
+        }
     }
 
      public void addtime()
@@ -43,5 +47,9 @@ public class Timer : MonoBehaviour
         return TimerClock;
     }
 
+    public bool getEndGame ()
+    {
+        return EndGame;
+    }
  
 }

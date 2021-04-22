@@ -21,25 +21,34 @@ public class KartManager : MonoBehaviour
    public bool mitad;
     public Text carrera;
     public bool jumping;
-        
+    private LoadManager LM;
+
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         Timer = GameObject.FindObjectOfType<Timer>();
         GM = GameObject.FindObjectOfType<GameManager>();
+        LM = GameObject.FindObjectOfType<LoadManager>();
         oSpeed = speed;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        move();
-        rotate();
-        if(powerspeed)
-        speedRecover();
-        SpeedDisplay();
-        textCarrera();
+        if (!Timer.getEndGame())
+        {
+            move();
+            rotate();
+            if (powerspeed)
+                speedRecover();
+            SpeedDisplay();
+            textCarrera();
+        }
+        else
+        {
+            LM.Loadlevel(2);
+        }
       
     }
     /// <summary>
@@ -113,7 +122,7 @@ public class KartManager : MonoBehaviour
         if (other.tag == "jump")
         {
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
-            m_Rigidbody.AddRelativeForce(new Vector3(0f, 30f, 0) * speed *  5);
+            m_Rigidbody.AddRelativeForce(new Vector3(0f, 10f, 0) * speed *  5);
             jumping = true;
 
            
@@ -158,8 +167,8 @@ public class KartManager : MonoBehaviour
     private void rotateoil()
     {
        
-        m_Rigidbody.AddTorque(new Vector3(360f, 360f, 360) );
-
+        m_Rigidbody.AddTorque(new Vector3(180f, 180f, 180f) );
+       
     }
     private void textCarrera()
     {
