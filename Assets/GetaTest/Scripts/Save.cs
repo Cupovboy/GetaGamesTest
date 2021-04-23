@@ -29,7 +29,9 @@ public class Save : MonoBehaviour
     {
         
     }
-
+    /// <summary>
+    /// Function that save and load data to and from a json
+    /// </summary>
     public void SaveData()
     {
         var binaryFormatter = new BinaryFormatter();

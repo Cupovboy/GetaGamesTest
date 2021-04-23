@@ -22,7 +22,9 @@ public class Timer : MonoBehaviour
         timerUpdate();
      
     }
-
+    /// <summary>
+    /// Display the timer on screen
+    /// </summary>
     void timerUpdate()
     {
         if (TimerClock >= 0)
@@ -35,7 +37,9 @@ public class Timer : MonoBehaviour
             EndGame = true;
         }
     }
-
+    /// <summary>
+    /// Add 10 seconds to the timer
+    /// </summary>
      public void addtime()
     {
 

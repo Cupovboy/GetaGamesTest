@@ -182,6 +182,9 @@ public class KartManager : MonoBehaviour
         m_Rigidbody.AddTorque(new Vector3(180f, 180f, 180f) );
        
     }
+    /// <summary>
+    /// Display the amount of laps completed in this timer
+    /// </summary>
     private void textCarrera()
     {
 
