@@ -4,12 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - speed
-  - Box
   - oil
+  - Undefined
   - jump
-  - m1
-  - End
+  - speed
   layers:
   - Default
   - TransparentFX
@@ -19,13 +17,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PostProcessing
+  - Ground
+  - Environment
+  - Track
+  - CrashObject
+  - Kart
+  - TrainingCheckpoints
   - 
   - 
   - 

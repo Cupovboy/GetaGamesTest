@@ -18,7 +18,7 @@ public class KartManager : MonoBehaviour
     private int oSpeed;
     private float timerStart;
     public Text SpeedT;
-   public bool mitad;
+    public bool mitad;
     public Text carrera;
     public bool jumping;
     private LoadManager LM;
@@ -31,6 +31,7 @@ public class KartManager : MonoBehaviour
         GM = GameObject.FindObjectOfType<GameManager>();
         LM = GameObject.FindObjectOfType<LoadManager>();
         oSpeed = speed;
+        m_Rigidbody.transform.parent = null;
     }
 
     // Update is called once per frame
@@ -61,18 +62,28 @@ public class KartManager : MonoBehaviour
         
         if (Input.GetAxis("Vertical") != 0)
         {
-           
+           float speedInput = 0f;
             wheelRotate();
-             m_Rigidbody.AddRelativeForce(m_Input * speed * Input.GetAxis("Vertical") * 5);
-            
-            
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                speedInput = Input.GetAxis("Vertical") * speed * 10f;
+            }
+            else if (Input.GetAxis("Vertical") < 0)
+
+            {
+                speedInput = Input.GetAxis("Vertical") * (speed) * 10f;
+
+            }
+
+
+            if(speedInput !=0)
+                m_Rigidbody.AddForce(transform.forward*speedInput);
+
+
 
         }
     
 
-        //Vector3 localVel = transform.InverseTransformDirection(m_Rigidbody.velocity);
-        //localVel.x = 0;
-       // m_Rigidbody.velocity = transform.TransformDirection(localVel);
         
     }
     /// <summary>
@@ -81,7 +92,7 @@ public class KartManager : MonoBehaviour
     private void rotate()
     {
 
-        if (Input.GetAxis("Horizontal") != 0)
+        if (Input.GetAxis("Horizontal") != 0) 
             m_Rigidbody.AddTorque(Vector3.up * Input.GetAxis("Horizontal") * 1);
 
     }
@@ -110,7 +121,7 @@ public class KartManager : MonoBehaviour
         if (other.tag == "speed")
         {
 
-            speed = speed * 3;
+            speed = speed * 20;
             powerspeed = true;
             
             
@@ -122,7 +133,7 @@ public class KartManager : MonoBehaviour
         if (other.tag == "jump")
         {
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
-            m_Rigidbody.AddRelativeForce(new Vector3(0f, 10f, 0) * speed *  5);
+            m_Rigidbody.AddRelativeForce(new Vector3(0f, 80f, 0) * speed *  5);
             jumping = true;
 
            
@@ -151,6 +162,7 @@ public class KartManager : MonoBehaviour
         else
         {
             powerspeed = false;
+            speed = oSpeed;
         }
     }
     /// <summary>
@@ -180,7 +192,7 @@ public class KartManager : MonoBehaviour
     private void changeConstrain()
     {
 
-      //  m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionY;
+      // m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionY;
     }
 
    

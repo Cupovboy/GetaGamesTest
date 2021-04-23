@@ -1,0 +1,14 @@
+
+=== Fri Apr 23 00:37:21 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.barracuda@1.0.4
+  com.unity.burst@1.4.6
+  com.unity.cinemachine@2.6.3
+  com.unity.connect.share@4.1.1
+  com.unity.learn.iet-framework@1.2.3
+  com.unity.ml-agents@1.0.7
+  com.unity.probuilder@4.5.0
